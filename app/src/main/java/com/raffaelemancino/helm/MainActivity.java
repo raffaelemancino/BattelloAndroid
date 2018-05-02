@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 import java.util.Date;
@@ -19,11 +20,14 @@ public class MainActivity extends AppCompatActivity
     private Switch runSwitch = null;
     private Button sendButton = null;
     private EditText message = null;
+    private SeekBar helmSeekBar = null;
+    private SeekBar speedSeekBar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        this.bluetoothMessanger.close();
 
         setContentView(R.layout.activity_main);
 
@@ -48,10 +52,63 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                bluetoothMessanger.sendMessage(message.getText().toString() + " --> " + new Date().toString());
+                bluetoothMessanger.sendMessage(message.getText().toString());
             }
         });
 
         this.message = (EditText) findViewById(R.id.editText);
+
+        this.helmSeekBar = (SeekBar) findViewById(R.id.helmSeekBar);
+        this.helmSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            int oldHelm = 50;
+            int sensitivity = 3;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b)
+            {
+                /*int newHelm = seekBar.getProgress();
+
+                if(this.oldHelm-this.sensitivity >= newHelm || this.oldHelm+this.sensitivity <= newHelm)
+                {
+                    bluetoothMessanger.sendMessage("helm: " + String.valueOf(newHelm));
+                    oldHelm = newHelm;
+                }*/
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+                bluetoothMessanger.sendMessage("helm: " + String.valueOf(seekBar.getProgress()));
+            }
+        });
+
+        this.speedSeekBar = (SeekBar) findViewById(R.id.speedSeekBar);
+        this.speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b)
+            {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+                bluetoothMessanger.sendMessage("speed: " + String.valueOf(seekBar.getProgress()));
+            }
+        });
     }
 }

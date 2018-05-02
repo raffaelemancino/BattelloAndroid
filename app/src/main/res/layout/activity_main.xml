@@ -13,7 +13,7 @@
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
+        android:id="@+id/speedSeekBar"
         android:layout_marginTop="84dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"/>
@@ -23,26 +23,28 @@
         android:layout_height="wrap_content"
         android:text="Run"
         android:id="@+id/runSwitch"
-        android:layout_alignEnd="@+id/seekBar"
+        android:layout_alignEnd="@+id/speedSeekBar"
         android:layout_alignParentStart="true"
         android:checked="false"/>
 
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/seekBar2"
-        android:layout_below="@+id/seekBar"
+        android:id="@+id/helmSeekBar"
+        android:layout_below="@+id/speedSeekBar"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/seekBar"
-        android:splitTrack="false"/>
+        android:layout_alignEnd="@+id/speedSeekBar"
+        android:splitTrack="false"
+        android:progress="50"
+        android:progressTint="#00ffffff"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_below="@+id/seekBar2"
+        android:layout_below="@+id/helmSeekBar"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/seekBar2"/>
+        android:layout_alignEnd="@+id/helmSeekBar"/>
 
     <Button
         android:layout_width="wrap_content"

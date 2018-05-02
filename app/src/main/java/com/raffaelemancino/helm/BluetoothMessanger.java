@@ -63,6 +63,7 @@ public class BluetoothMessanger
         {
             try
             {
+                msg += "\n";
                 this.bluetoothSocket.getOutputStream().write(msg.getBytes());
             } catch (IOException e)
             {
